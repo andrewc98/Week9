@@ -6,9 +6,37 @@ var http = require('http').Server(app);
 app.use(express.static(__dirname + '/www'));
 var port = 3000;
 const cors = require('cors');
+
 var server = http.listen(port,function(){
     var host = server.address().address;
     console.log('Server listening on ' + host + ':' + port);
+});
+
+var corsOptions = {
+    origin: 'http://localhost:4200',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+}
+app.use(cors(corsOptions))
+
+// --- Connection to Angular Start
+app.use(express.static(path.join(__dirname, '../week9/dist/week9/')));
+app.get('/', function (req, res) {
+    console.log("Hello world.");
+    res.sendFile(path.join(__dirname,'../week9/dist/week9/index.html'))
+});
+app.get('/manage_groups', function(req,res){
+    res.sendFile(path.join(__dirname,'../week9/dist/week9/index.html'))
+});
+app.get('/manage_channels', function(req,res){
+    res.sendFile(path.join(__dirname,'../week9/dist/week9/index.html'))
+});
+app.get('/manage_users', function(req,res){
+    res.sendFile(path.join(__dirname,'../week9/dist/week9/index.html'))
+});
+// --- Connection to Angular End
+
+app.get('/api/dash', (req, res) => {
+
 });
 
 app.get('/home',function(request,response){
