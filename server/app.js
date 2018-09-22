@@ -6,6 +6,9 @@ var http = require('http').Server(app);
 app.use(express.static(__dirname + '/www'));
 var port = 3000;
 const cors = require('cors');
+const path = require('path');
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
 var server = http.listen(port,function(){
     var host = server.address().address;
@@ -24,19 +27,20 @@ app.get('/', function (req, res) {
     console.log("Hello world.");
     res.sendFile(path.join(__dirname,'../week9/dist/week9/index.html'))
 });
-app.get('/manage_groups', function(req,res){
+app.get('/products', function(req,res){
+    console.log("Hello world.");
     res.sendFile(path.join(__dirname,'../week9/dist/week9/index.html'))
 });
-app.get('/manage_channels', function(req,res){
+app.get('/add_product', function(req,res){
     res.sendFile(path.join(__dirname,'../week9/dist/week9/index.html'))
 });
-app.get('/manage_users', function(req,res){
+app.get('/update_product', function(req,res){
     res.sendFile(path.join(__dirname,'../week9/dist/week9/index.html'))
 });
 // --- Connection to Angular End
 
-app.get('/api/dash', (req, res) => {
-
+app.get('/api/add', (req, res) => {
+    console.log("Made it");
 });
 
 app.get('/home',function(request,response){
