@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AddProductServiceService } from '../add-product-service.service'
+import { Router } from '@angular/router';
+import { AddProductServiceService } from '../add-product-service.service';
 
 @Component({
   selector: 'app-add-product',
@@ -13,7 +14,7 @@ export class AddProductComponent implements OnInit {
   ngOnInit() {
     console.log("AddProductComp");
     this._addService.addProduct().subscribe(
-      data => { },
+      data => { return true },
       err => console.error(err),
       () => console.log('Found Groups')
     );
