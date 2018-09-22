@@ -1,25 +1,18 @@
 <!-- https://bootswatch.com/superhero/ -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" routerLink="dashboard">Chat Application</a>
+  <a class="navbar-brand" routerLink="/">Chat Application</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="manage_user">Users</a>
+        <a class="nav-link" routerLink="add_product">Add Product</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="manage_channels">Channels</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="manage_groups">Groups</a>
+        <a class="nav-link" routerLink="update_product">Update Product</a>
       </li>
     </ul>
-    <form (submit)="logoutUser($event)" class="form-inline my-2 my-lg-0">
-      <button class="btn btn-primary" type="submit">Logout</button>
-    </form>
   </div>
 </nav>
 <router-outlet></router-outlet>

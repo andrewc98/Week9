@@ -5,6 +5,7 @@ const url = 'mongodb://localhost:27017/mydb';
 var http = require('http').Server(app);
 app.use(express.static(__dirname + '/www'));
 var port = 3000;
+const cors = require('cors');
 var server = http.listen(port,function(){
     var host = server.address().address;
     console.log('Server listening on ' + host + ':' + port);
