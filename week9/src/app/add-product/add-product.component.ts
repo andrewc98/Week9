@@ -12,11 +12,11 @@ export class AddProductComponent implements OnInit {
   constructor(private _addService: AddProductServiceService) { }
 
   ngOnInit() {
-    console.log("AddProductComp");
-    this._addService.addProduct().subscribe(
-      data => { return true },
-      err => console.error(err),
-      () => console.log('Found Groups')
-    );
+  }
+  
+  addProduct(name, price, type, desc) {
+    this._addService.addProduct(name, price, type, desc).subscribe(
+      
+    )
   }
 }

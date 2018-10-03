@@ -13,8 +13,14 @@ export class AddProductServiceService {
 
   constructor(private http:HttpClient) { }
 
-  addProduct() {
+  addProduct(name, price, type, desc) {
+    let body = {
+      name: name,
+      price: price,
+      type: type,
+      desc: desc
+    }
     console.log("AddProductService");
-    return this.http.get('http://localhost:3000/api/add/', httpOptions);
+    return this.http.post('http://localhost:3000/api/add/', body, httpOptions);
   }
 }

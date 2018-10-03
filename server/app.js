@@ -39,8 +39,15 @@ app.get('/update_product', function(req,res){
 });
 // --- Connection to Angular End
 
-app.get('/api/add', (req, res) => {
-    console.log("Made it");
+app.post('/api/add', (req, res) => {
+    MongoClient.connect(url, {poolSize:10}, function(err, db) {
+        if (err) { return console.log(err) }
+        const dbName = 'mydb';
+        var products = db.db(dbName);
+        const create = require("./add.js");
+        create.addProduct(products, res, req.body);
+        db.close();
+    });
 });
 
 app.get('/api/products', (req, res) => {
