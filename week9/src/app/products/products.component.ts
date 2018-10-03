@@ -20,7 +20,18 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts().subscribe(
       data => { this.products = data },
       err => console.error(err),
-      () => console.log('Found Groups')
+      () => console.log('Found Products')
+    );
+  }
+
+  deleteProduct(id) {
+    this.productService.deleteProduct(id).subscribe(
+      data => { this.products = data },
+      err => console.error(err),
+      () => {
+        console.log('Delete Product');
+        this.getProducts();
+      }
     );
   }
 

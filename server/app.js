@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/mydb';
+const mongo_parser = require('mongodb');
 var http = require('http').Server(app);
 app.use(express.static(__dirname + '/www'));
 var port = 3000;
@@ -46,6 +47,17 @@ app.post('/api/add', (req, res) => {
         var products = db.db(dbName);
         const create = require("./add.js");
         create.addProduct(products, res, req.body);
+        db.close();
+    });
+});
+
+app.post('/api/products_delete', (req, res) => {
+    MongoClient.connect(url, {poolSize:10}, function(err, db) {
+        if (err) { return console.log(err) }
+        const dbName = 'mydb';
+        var products = db.db(dbName);
+        const id_delete = require("./remove.js");
+        id_delete.deleteProduct(products, res, mongo_parser.ObjectID(req.body.id));
         db.close();
     });
 });
