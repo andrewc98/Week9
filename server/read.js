@@ -1,9 +1,8 @@
 module.exports = {
-    readProducts(products, db) {
+    readProducts(products, res) {
         products.collection("products").find({}).toArray(function(err, result) {
             if (err) { return console.log(err) }
-            console.log(result);
-            db.close();
+            res.send(result);
         });
     }
 }

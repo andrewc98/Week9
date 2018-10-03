@@ -43,6 +43,17 @@ app.get('/api/add', (req, res) => {
     console.log("Made it");
 });
 
+app.get('/api/products', (req, res) => {
+    MongoClient.connect(url, {poolSize:10}, function(err, db) {
+        if (err) { return console.log(err) }
+        const dbName = 'mydb';
+        var products = db.db(dbName);
+        const read = require("./read.js");
+        read.readProducts(products, res);
+        db.close();
+    });
+});
+
 app.get('/home',function(request,response){
     response.sendFile(__dirname + "/www/index.html");
     MongoClient.connect(url, {poolSize:10}, function(err, db) {
