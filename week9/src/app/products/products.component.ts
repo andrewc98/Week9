@@ -28,10 +28,7 @@ export class ProductsComponent implements OnInit {
     this.productService.deleteProduct(id).subscribe(
       data => { this.products = data },
       err => console.error(err),
-      () => {
-        console.log('Delete Product');
-        this.getProducts();
-      }
+      () => console.log('Delete Product')
     );
   }
 

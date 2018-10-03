@@ -58,6 +58,8 @@ app.post('/api/products_delete', (req, res) => {
         var products = db.db(dbName);
         const id_delete = require("./remove.js");
         id_delete.deleteProduct(products, res, mongo_parser.ObjectID(req.body.id));
+        const read = require("./read.js");
+        read.readProducts(products, res);
         db.close();
     });
 });
