@@ -64,6 +64,17 @@ app.post('/api/products_delete', (req, res) => {
     });
 });
 
+app.post('/api/update_product', (req, res) => {
+    MongoClient.connect(url, {poolSize:10}, function(err, db) {
+        if (err) { return console.log(err) }
+        const dbName = 'mydb';
+        var products = db.db(dbName);
+        const update_product = require('./update.js');
+        update_product.updateProduct(products, res, mongo_parser.ObjectID(req.body.id), req.body);
+        db.close();
+    });
+});
+
 app.get('/api/products', (req, res) => {
     MongoClient.connect(url, {poolSize:10}, function(err, db) {
         if (err) { return console.log(err) }

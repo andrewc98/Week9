@@ -1,8 +1,12 @@
 module.exports = {
-    updateProduct(products) {
-        const product_to_update = { _id: 2 };
-        var update_product = { $set: {name: "Mouthwash", description: "Cleans all the nooks and crannies" } };
-        products.collection("products").updateOne(product_to_update, update_product, function(err, res) {
+    updateProduct(products, res, id, product) {
+        let = update_product = {
+            name: product.name,
+            price: product.price,
+            type: product.type,
+            description: product.desc,
+        }
+        products.collection("products").updateOne({_id: id}, update_product, function(err, res) {
             if (err) { return console.log(err) }
             console.log("Updated");
         });

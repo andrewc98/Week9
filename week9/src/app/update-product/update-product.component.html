@@ -1,3 +1,19 @@
-<p>
-  update-product works!
-</p>
+<div *ngFor="let product of products">
+  <form>
+    <fieldset>
+      <div class="form-group">
+        <label>ID</label>
+        <input [(ngModel)]="productID" type="text" placeholder="{{product._id}}" id="productID" class="form-control" name="productID" disabled>
+        <label>Name</label>
+        <input [(ngModel)]="productName" type="text" placeholder="{{product.name}}" id="productName" class="form-control" name="productName">
+        <label>Price</label>
+        <input [(ngModel)]="productPrice" type="text" placeholder="{{product.price}}" id="productPrice" class="form-control" name="productPrice">
+        <label>Type</label>
+        <input [(ngModel)]="productType" type="text" placeholder="{{product.type}}" id="productType" class="form-control" name="productType">
+        <label>Description</label>
+        <input [(ngModel)]="productDesc" type="text" placeholder="{{product.desc}}" id="productDesc" class="form-control" name="productDesc">
+      </div>
+      <button (click)="updateProduct(productName, productPrice, productType, productDesc)" type="submit" class="btn btn-primary">Add Product</button>
+    </fieldset>
+  </form>
+</div>
