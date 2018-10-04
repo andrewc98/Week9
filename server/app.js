@@ -90,7 +90,7 @@ app.post('/api/update_product', (req, res) => {
     });
 });
 
-app.get('/api/products', (req, res) => {
+app.post('/api/products', (req, res) => {
     MongoClient.connect(url, {poolSize:10}, function(err, db) {
         if (err) { return console.log(err) }
         const dbName = 'mydb';
