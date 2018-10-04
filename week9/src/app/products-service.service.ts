@@ -23,4 +23,10 @@ export class ProductsServiceService {
     return this.http.post('http://localhost:3000/api/products_delete/', body, httpOptions);
   }
 
+  searchProducts(search_text){
+    var body = {
+      search_text: search_text
+    }
+    return this.http.post('http://localhost:3000/api/search/', body, httpOptions);
+  }
 }

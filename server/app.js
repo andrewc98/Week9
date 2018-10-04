@@ -51,6 +51,21 @@ app.post('/api/add', (req, res) => {
     });
 });
 
+app.post('/api/search', (req, res) => {
+    MongoClient.connect(url, {poolSize:10}, function(err, db) {
+        if (err) { return console.log(err) }
+        console.log(req.body.search_text);
+        const dbName = 'mydb';
+        var products = db.db(dbName);
+        products.collection("products").find({desc: req.body.search_text}).toArray(function(err, result) {
+            if (err) { return console.log(err) }
+            console.log("Found results");
+            res.send(result);
+        });
+        db.close();
+    });
+});
+
 app.post('/api/products_delete', (req, res) => {
     MongoClient.connect(url, {poolSize:10}, function(err, db) {
         if (err) { return console.log(err) }

@@ -32,4 +32,12 @@ export class ProductsComponent implements OnInit {
     );
   }
 
+  searchProduct(search_text){
+    this.productService.searchProducts(search_text).subscribe(
+      data => { this.products = data },
+      err => console.error(err),
+      () => console.log('Searched Product')
+    );
+    console.log(search_text);
+  }
 }
