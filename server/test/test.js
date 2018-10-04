@@ -1,29 +1,17 @@
-var assert = require('assert');
-var http = require('http');
-const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/mydb';
-const mongo_parser = require('mongodb');
+var server = require('../app');
+var chai = require('chai');
+var supertest = require('supertest');
 
-describe('Tests', () => {
-    describe('/api/add', () => {
-        before((done) => {
-            done();
-        });
-        it('Adding', () => {
-            var read_result;
-            MongoClient.connect(url, {poolSize:10}, function(err, db) {
-                if (err) { return console.log(err) }
-                const dbName = 'mydb';
-                var products = db.db(dbName);
-                const read = require("../read.js");
-                read_result = read.readProducts(products, res);
-                setTimeout(pause, 5000);
-                assert.equal(read_result, 1);
-                db.close();
+var expect = chai.expect;
+describe('API Tests', function() {
+    describe('# Get all tasks', function() { 
+        it('should get all tasks', function(done) { 
+            request(server) .get('/tasks') .end(function(err, res) { 
+                expect(res.statusCode).to.equal(200); 
+                expect(res.body).to.be.an('array'); 
+                expect(res.body).to.be.empty; 
+                done(); 
             });
-        });
-        after((done) => {
-            done();
-        });
-    });
+        }); 
+    }); 
 });
