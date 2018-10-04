@@ -57,7 +57,7 @@ app.post('/api/search', (req, res) => {
         console.log(req.body.search_text);
         const dbName = 'mydb';
         var products = db.db(dbName);
-        products.collection("products").find({desc: req.body.search_text}).toArray(function(err, result) {
+        products.collection("products").find({ $or: [ {desc: req.body.search_text}, {name: req.body.search_text} ] }).toArray(function(err, result) {
             if (err) { return console.log(err) }
             console.log("Found results");
             res.send(result);
